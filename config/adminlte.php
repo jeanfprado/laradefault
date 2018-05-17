@@ -110,18 +110,18 @@ return [
     'menu' => [
         'MAIN NAVIGATION',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Pages',
+            'url'  => 'admin/page',
+            'icon'  => 'file',
         ],
-        [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
+        
         'ACCOUNT SETTINGS',
+        [
+            'text'        => 'Usuários',
+            'url'         => 'users',
+            'icon'        => 'users',
+            'can'         => 'module_user'
+        ],
         [
             'text' => 'Profile',
             'url'  => 'admin/settings',
