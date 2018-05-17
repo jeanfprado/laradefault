@@ -8,5 +8,9 @@
 <p>AdminLTE</p>
 <p>Laravel Collective</p>
 <p>r5-Repository</p>
-<h1>Instalação</h1>
+<h1>Orientações</h1>
 <code>php artisan migrate --seed</code>
+<p>Permissões são criadas e deletadas somente por comandos no artisan</p>
+<p>Exemplos</p>
+<code>php artisan permission:create module_user.create "Criar Usuário"</code>
+<code>php artisan permission:destroy 1 </code>
