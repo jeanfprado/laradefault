@@ -5,17 +5,20 @@ namespace App\Http\Controllers\Permission;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use App\Repositories\PermissionRepository;
 
 class PermissionController extends Controller
 {
+    protected $repository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(PermissionRepository $repository)
     {
         $this->middleware('auth');
+        $this->repository = $repository;
     }
 
     /**
@@ -25,7 +28,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('module_permission');
+        $permissions = $this->repository->all();
+
+        return view('permissions.index', compact('permissions'));
     }
 
    
@@ -37,7 +43,8 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        //
+        $this->authorize('module_permission.edit');
+        return view('permissions.edit', compact('permission'));
     }
 
     /**
@@ -49,7 +56,12 @@ class PermissionController extends Controller
      */
     public function update(Request $request, Permission $permission)
     {
-        //
+        $this->authorize('module_permisson.edit');
+        $data = $request->all();
+
+        $this->repository->update($data, $permission->id);
+
+        return redirect()->back()->with('success', 'Registro Atualizado!');
     }
 
    
