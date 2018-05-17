@@ -25,4 +25,19 @@ class Role extends Model implements Transformable
         'title'
     ];
 
+    /**
+     * Relacionamento muito para muito entre Role e User com tabela de relacionamento role_users
+     *
+     * @var array
+     */
+    public function user()
+    {
+        return $this->belongsToMany(User::class,'user_has_roles','role_id', 'user_id');
+    }
+
+    public function permission()
+    {
+        return $this->belongsToMany(Permission::class,'role_has_permissions','role_id', 'permission_id');
+    }
+
 }
