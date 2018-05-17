@@ -62,12 +62,12 @@ class PermissionTableSeeder extends Seeder
          $permission->name = 'module_role.edit';
          $permission->title = 'Editar papel de acesso';
          $permission->save();
+         $permission->role()->attach($role->id);
          $permission = new Permission();
          $permission->name = 'module_user.show';
          $permission->title = 'Ver papel de acesso';
          $permission->save();
-         $permission->role()->attach($role->id);
-         $permission->role()->attach($role->id);      
+         $permission->role()->attach($role->id);             
          $permission = new Permission();
          $permission->name = 'module_role.delete';
          $permission->title = 'Deletar papel de acesso';

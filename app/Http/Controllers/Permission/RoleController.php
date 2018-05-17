@@ -3,19 +3,24 @@
 namespace App\Http\Controllers\Permission;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\Role;
+use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+
+    protected $repository;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(RoleRepository $repository)
     {
         $this->middleware('auth');
+        $this->repository = $repository;
     }
 
     /**
@@ -25,7 +30,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('module_role');
+        $roles = $this->repository->all();
+
+        return view('roles.index', compact('roles'));
     }
 
     /**
@@ -35,7 +43,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
     /**
@@ -46,7 +54,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $this->repository->create($data);
+
+        return redirect()->back()->with('success', 'Registo Salvo!');
     }
 
     /**
@@ -55,9 +67,27 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function showPermission(Role $role)
     {
-        //
+        return view('roles.permission', compact('role'));
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storePermission(Request $request)
+    {
+        $data = $request->all();
+
+        $permissions = array_key_exists('permissions', $data) ? $data['permissions'] : []; //separa o array de permissões
+
+        $role = Role::find($data['role_id']);
+
+        $role->permission()->sync($permissions); //sincronisa do cados de permissão padrão N:N do laravel
+
+        return redirect()->back()->with('success', 'Registro Salvo!');
     }
 
     /**
@@ -68,7 +98,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('roles.edit', compact('role'));
     }
 
     /**
@@ -80,7 +110,12 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $data = $request->all();
+
+        $this->repository->update($data, $role->id);
+
+        return redirect()->back()->with('success', 'Registo Atualizado!');
+
     }
 
     /**
@@ -91,6 +126,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $this->repository->delete($role->id);
+
+        return redirect()->back()->with('success', 'Registo Excluído!');
     }
 }

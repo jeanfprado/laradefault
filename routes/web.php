@@ -21,4 +21,7 @@ Route::resource('permissions', 'Permission\PermissionController');
 Route::resource('roles', 'Permission\RoleController');
 Route::resource('users', 'UserController');
 
+Route::get('/roles/permissions/{role}', 'Permission\RoleController@showPermission')->name('roles.permission');
+Route::post('/roles/permissions/store', 'Permission\RoleController@storePermission')->name('roles.permission.store');
+
 Route::get('/home', 'HomeController@index')->name('home');

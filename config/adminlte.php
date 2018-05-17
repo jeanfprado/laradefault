@@ -120,17 +120,19 @@ return [
             'text'        => 'Usuários',
             'url'         => 'users',
             'icon'        => 'users',
-            'can'         => 'module_user'
+            'can'         => 'module_user',
         ],
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'text' => 'Papeis de Acesso',
+            'url'  => 'roles',
             'icon' => 'user',
+            'can'  => 'module_role',
         ],
         [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
+            'text' => 'Permissões',
+            'url'  => 'permissions',
             'icon' => 'lock',
+            'can'  => 'module_permission'
         ],
         [
             'text'    => 'Multilevel',
