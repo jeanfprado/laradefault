@@ -10,7 +10,7 @@
 <p>r5-Repository</p>
 <h1>Orientações</h1>
 <code>php artisan migrate --seed</code>
-<p>Permissões são criadas e deletadas somente por comandos no artisan</p>
-<p>Exemplos</p>
-<code>php artisan permission:create module_user.create "Criar Usuário"</code>
+<p>Permissões são criadas e deletadas somente por comandos no artisan</p> <br>
+<spam>Exemplos</spam>
+<code>php artisan permission:create module_user.create "Criar Usuário"</code> <br>
 <code>php artisan permission:destroy 1 </code>
