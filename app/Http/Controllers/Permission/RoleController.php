@@ -43,6 +43,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $this->authorize('module_role.create');
         return view('roles.create');
     }
 
@@ -54,6 +55,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('module_role.create');
         $data = $request->all();
 
         $this->repository->create($data);
@@ -69,6 +71,7 @@ class RoleController extends Controller
      */
     public function showPermission(Role $role)
     {
+        $this->authorize('module_role.create');
         return view('roles.permission', compact('role'));
     }
     /**
@@ -79,6 +82,7 @@ class RoleController extends Controller
      */
     public function storePermission(Request $request)
     {
+        $this->authorize('module_role.create');
         $data = $request->all();
 
         $permissions = array_key_exists('permissions', $data) ? $data['permissions'] : []; //separa o array de permissões
@@ -98,6 +102,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        $this->authorize('module_role.edit');
         return view('roles.edit', compact('role'));
     }
 
@@ -110,6 +115,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        $this->authorize('module_role.edit');
         $data = $request->all();
 
         $this->repository->update($data, $role->id);
@@ -126,6 +132,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        $this->authorize('module_role.delete');
         $this->repository->delete($role->id);
 
         return redirect()->back()->with('success', 'Registo Excluído!');

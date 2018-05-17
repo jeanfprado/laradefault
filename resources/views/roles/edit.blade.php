@@ -1,6 +1,6 @@
 @extends('layouts.partials._modal')
 
-@section('title', 'Editando Usuário')
+@section('title', 'Editando Papel de Acesso')
 
 @section('content')
  

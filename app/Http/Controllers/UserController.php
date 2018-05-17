@@ -55,6 +55,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->authorize('module_user.create');
+
+        $data = $request->all();
+
+        $data['password'] = bcrypt($data['password']);
+        $data['remember_token'] = str_random(10);
+
+        $store = $this->repository->create($data);
+
+        $store->role()->attach($data['role_id']); //Adicionando papel ao usuário
+
+        return redirect()->back()->with('success', 'success');
     }
 
     /**

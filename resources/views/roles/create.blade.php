@@ -1,6 +1,6 @@
 @extends('layouts.partials._modal')
 
-@section('title', 'Novo Papel')
+@section('title', 'Novo Papel de Acesso')
 
 @section('content')
  

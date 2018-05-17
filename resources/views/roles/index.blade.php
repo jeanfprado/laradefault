@@ -37,7 +37,9 @@
                     <td>{{ $role->title }}</td>  
                     <td>{{ $role->user->count() }}</td>        
                    <td>
+                    @can('module_role.create')
                     <a href="{{ route('roles.permission', ['role' => $role->id]) }}" data-toggle="modal" data-target="#modalLarge" title="Gerenciar Permissões" class="btn btn-default btn-sm"   ><i class="fa fa-lock" ></i></a>
+                    @endcan
                     @can('module_role.edit')
                     <a href="{{route('roles.edit', ['role' => $role->id])}}" data-toggle="modal" data-target="#modalMedium" title="Editar Papel" class="btn btn-default btn-sm"  ><i class="fa fa-edit" ></i></a>
                     @endcan
