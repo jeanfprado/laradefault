@@ -1,10 +1,10 @@
 <h1>Sobre o Projeto</h1>
 <p>Projeto Padrão baseado no Laravel 5.6</p>
-<h1>Descrição<h1>
+<h1>Descrição</h1>
 <p>Painel Admistrativo com controle de permissão de acesso ACL Nativo</p>
 <p>Papeis de Acesso</p>
-<p>Permissões<p>
-<h2>Pacotes</h2>
+<p>Permissões</p>
+<h1>Pacotes de Terceiros</h1>
 <p>AdminLTE</p>
 <p>Laravel Collective</p>
 <p>r5-Repository</p>
