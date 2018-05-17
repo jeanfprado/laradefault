@@ -13,7 +13,7 @@ class CreateRoleHasPermissonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_has_permissons', function (Blueprint $table) {
+        Schema::create('role_has_permissions', function (Blueprint $table) {
             $table->integer('permission_id')->unsigned();
 			$table->foreign('permission_id')->references('id')->on('permissions');
 			$table->integer('role_id')->unsigned();
@@ -29,6 +29,6 @@ class CreateRoleHasPermissonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_has_permissons');
+        Schema::dropIfExists('role_has_permissions');
     }
 }
