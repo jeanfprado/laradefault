@@ -5,12 +5,12 @@
 <p>Papeis de Acesso</p>
 <p>Permissões</p>
 <h1>Pacotes de Terceiros</h1>
-<p>AdminLTE</p>
-<p>Laravel Collective</p>
-<p>r5-Repository</p>
+<p>Fácil integração do AdminLTE com o Laravel: <a target="_blank" href="https://github.com/jeroennoten/Laravel-AdminLTE" >AdminLTE</a></p>
+<p>HTML e Form Builders para o Laravel Framework: <a target="_blank"  href="https://laravelcollective.com/docs/master/html" >Laravel Collective</a></p>
+<p>Repositórios para resumo da camada de banco de dados: <a target="_blank" href="https://github.com/andersao/l5-repository" >l5-Repository</a></p>
 <h1>Orientações</h1>
-<code>php artisan migrate --seed</code> <brs>
-<p>Permissões são criadas e deletadas somente por comandos no artisan</p> <br>
+<p><code>php artisan migrate --seed</code></p>
+<p>Permissões são criadas e deletadas somente por comandos no artisan</p> 
 <spam>Exemplos</spam> <br>
-<code>php artisan permission:create module_user.create "Criar Usuário"</code> <br>
-<code>php artisan permission:destroy 1 </code>
+<p> Criar nova permissão: argumentos name title <code>php artisan permission:create module_user.create "Criar Usuário"</code> </p>
+<p> Deletar permissão: argumento id<code>php artisan permission:destroy 1 </code></p>
