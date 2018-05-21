@@ -8,7 +8,7 @@
 
 @section('content')
 
-
+    @include('errors._check')
 
 		  <div class="box">
 		    <div class="box-header with-border">
@@ -40,7 +40,7 @@
                     <td>{{ $user->role->first()->name }}</td>
                     <td>
                      @can('module_user.edit') 
-                    <a href="#" title="Editar Usuário" class="btn btn-default btn-sm"  ><i class="fa fa-edit" ></i></a>
+                    <a href="{{ route('users.edit', ['user' => $user->id]) }}" data-toggle="modal" data-target="#modalMedium" title="Editar Usuário" class="btn btn-default btn-sm"  ><i class="fa fa-edit" ></i></a>
                     @endcan
                     @can('module_user.delete')
                     <a href="#" title="Excluir Usuário" class="btn btn-default btn-sm"   ><i class="fa fa-remove" ></i></a>
