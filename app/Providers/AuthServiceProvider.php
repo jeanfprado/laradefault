@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Support\Facades\Schema;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,17 +27,26 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-         // criando os Gate de Acesso
-         if ( Schema::hasTable('permissions') ){
-            $perms = \App\Models\Permission::with('role')->get();
-             foreach($perms as $kperm => $permission){
-                Gate::define($permission->name, function(User $user) use ($permission){
-                    return $user->hasPermission($permission);
-                });
+         
+        try {
+            if (\Schema::hasTable('permissions')) {
+                // criando os Gate de Acesso
+                foreach ($this->getPermissions() as $permission) {
+                    $gate->define($permission->name, function (User $user) use ($permission) {
+                        return $user->hasPermission($permission);
+                    });
+                }
             }
-
-            
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return;
         }
+        
+
+    }
+    
+
+    protected function getPermissions()
+    {
+        return Permission::with('role')->get();
     }
 }
