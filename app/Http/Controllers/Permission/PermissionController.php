@@ -56,7 +56,7 @@ class PermissionController extends Controller
      */
     public function update(Request $request, Permission $permission)
     {
-        $this->authorize('module_permisson.edit');
+        $this->authorize('module_permission.edit');
         $data = $request->all();
 
         $this->repository->update($data, $permission->id);
