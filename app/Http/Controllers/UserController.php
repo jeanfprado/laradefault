@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Repositories\UserRepository;
-use App\Http\Requests\UserRequest;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -72,13 +74,24 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\user  $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
         $this->authorize('module_user.show');
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        $this->authorize('module_user.show');
+        $user = Auth::user();
+        return view('users.profile', compact('user'));
     }
 
     /**
@@ -113,9 +126,44 @@ class UserController extends Controller
 
         $store->role()->sync($data['role_id']); //atualizando papel ao usuário
 
-        return redirect()->back()->with('success', 'success');
+        return redirect()->back()->with('success', 'Registro atualizado!');
     
     }
+
+    public function profileUpdate(Request $request)
+     {
+         $data = $request->all();
+
+         User::where('id', Auth::id())->update(['name' => $data['name'], 'email' => $data['email']]);
+
+         return redirect()->back()->with('success', 'Perfil atualizado!');
+     }
+
+    public function newPassword(Request $request){
+ 
+        if (!(Hash::check($request->get('old_password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Sua senha atual não corresponde à senha que você forneceu. Por favor, tente novamente.");
+        }
+ 
+        if(strcmp($request->get('old_password'), $request->get('password')) == 0){
+            //Current password and new password are same
+            return redirect()->back()->with("error","A nova senha não pode ser igual à sua senha atual. Por favor, escolha uma senha diferente.");
+        }
+ 
+        $validatedData = $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+ 
+        return redirect()->back()->with("success","Senha alterada com sucesso !");
+     }
 
     /**
      * Remove the specified resource from storage.

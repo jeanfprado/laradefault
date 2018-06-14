@@ -117,6 +117,12 @@ return [
         
         'ACCOUNT SETTINGS',
         [
+            'text'        => 'Meu Perfil',
+            'route'         => 'users.profile',
+            'icon'        => 'user',
+            'can'         => 'module_user.show',
+        ],
+        [
             'text'        => 'Usuários',
             'url'         => 'users',
             'icon'        => 'users',
@@ -125,7 +131,7 @@ return [
         [
             'text' => 'Papeis de Acesso',
             'url'  => 'roles',
-            'icon' => 'user',
+            'icon' => 'user-secret',
             'can'  => 'module_role',
         ],
         [
