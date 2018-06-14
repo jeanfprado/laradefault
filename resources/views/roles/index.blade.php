@@ -44,7 +44,12 @@
                     <a href="{{route('roles.edit', ['role' => $role->id])}}" data-toggle="modal" data-target="#modalMedium" title="Editar Papel" class="btn btn-default btn-sm"  ><i class="fa fa-edit" ></i></a>
                     @endcan
                     @can('module_role.delete')
-                    <a href="{{ route('roles.destroy',['role' => $role->id]) }}" title="Excluir Papel" class="btn btn-default btn-sm"   ><i class="fa fa-remove" ></i></a> 
+                    <a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="$(this).find('form').submit();" >
+                      <i class="fa fa-remove"> </i>
+                      {!! Form::open(['route' => ['roles.destroy', $role->id], 'method' => 'delete']) !!}
+                      {!! Form::close() !!} 
+                    </a>
+                                      
                     @endcan
                     </td>
                     </tr>
