@@ -37,6 +37,6 @@ Route::resource('users', 'UserController');
 
 Route::get('/myprofile', ['as' => 'users.profile',  'uses' =>'UserController@profile']);
 Route::post('/myprofile/newpassoword', ['as' => 'users.newpassword',  'uses' =>'UserController@newpassword']);
-Route::post('/myprofile/update', ['as' => 'users.update',  'uses' =>'UserController@profileUpdate']);
+Route::post('/myprofile/update', ['as' => 'users.updateProfile',  'uses' =>'UserController@profileUpdate']);
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -120,7 +120,7 @@
 
           <div class="tab-pane" id="settings">
             
-            {!! Form::model($user,['route'=>['users.update'], 'id' => 'form', 'class' => 'form-horizontal'])  !!}
+            {!! Form::model($user,['route'=>['users.updateProfile'], 'id' => 'form', 'class' => 'form-horizontal'])  !!}
 
             <div class="form-group" >
               {!! Form::label('Name', 'Nome', ['class' => 'col-sm-2 control-label']) !!}
