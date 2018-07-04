@@ -16,7 +16,6 @@ class PermissionTableSeeder extends Seeder
          //ROLE ADMIN
          $role = new Role();
          $role->name = 'Admin';
-         $role->title = 'Administrador';
          $role->save();
  
          //USER
