@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                    <h3>Repositório padrão laravel 5.6 com controle de acesso ACL Nativo + AdminLTE + Laravel Collective + r5-Repository</h3>
+                    <h3>Repositório padrão laravel 5.8 com controle de acesso ACL Nativo + AdminLTE + Laravel Collective + r5-Repository</h3>
                     <a target="_black" href="https://laravel.com/docs">Documentação laravel</a>                   
                     <a target="_black" href="https://github.com/JeanPrad0/laradefault">GitHub Laradefault</a>
                 </div>

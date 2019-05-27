@@ -1,5 +1,5 @@
 <h1>Sobre o Projeto</h1>
-<p>Projeto Padrão baseado no Laravel 5.6</p>
+<p>Projeto Padrão baseado no Laravel 5.8</p>
 <h1>Descrição</h1>
 <p>Painel Administrativo com controle de acesso ACL Nativo</p>
 <p>Papeis de Acesso</p>
