@@ -8,3 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: ./.github/actions/composer
+      - uses: ./.github/actions/config-laravel
+      - run: ./vendor/bin/phpunit
+      - run: ./vendor/bin/phpcs
