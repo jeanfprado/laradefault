@@ -2,4 +2,4 @@
 cp .env.example .env
 php artisan config:clear
 php artisan cache:clear
-php artisan key:genarate
+php artisan key:generate
