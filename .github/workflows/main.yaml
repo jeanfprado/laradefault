@@ -6,4 +6,4 @@ jobs:
     name: Laravel Build
     runs-on: ubuntu-18.04
     steps:
-      - users: actions/checkout@v1
+      - uses: actions/checkout@v1
