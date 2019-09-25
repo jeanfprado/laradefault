@@ -40,8 +40,6 @@ class AuthServiceProvider extends ServiceProvider
         } catch (\Illuminate\Database\QueryException $ex) {
             return;
         }
-        
-
     }
     
 

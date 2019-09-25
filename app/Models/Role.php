@@ -32,12 +32,11 @@ class Role extends Model implements Transformable
      */
     public function user()
     {
-        return $this->belongsToMany(User::class,'user_has_roles','role_id', 'user_id');
+        return $this->belongsToMany(User::class, 'user_has_roles', 'role_id', 'user_id');
     }
 
     public function permission()
     {
-        return $this->belongsToMany(Permission::class,'role_has_permissions','role_id', 'permission_id');
+        return $this->belongsToMany(Permission::class, 'role_has_permissions', 'role_id', 'permission_id');
     }
-
 }

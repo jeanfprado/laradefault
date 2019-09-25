@@ -28,7 +28,6 @@ class PermissionDestroy extends Command
     public function __construct()
     {
         parent::__construct();
-
     }
 
     /**
@@ -38,12 +37,12 @@ class PermissionDestroy extends Command
      */
     public function handle()
     {
-       $delete = \DB::table('permissions')->where('id', '=', $this->argument('permission'))->delete();
+        $delete = \DB::table('permissions')->where('id', '=', $this->argument('permission'))->delete();
    
-       if($delete){
-        $this->info("Permission deleted");
-       }else{
-        $this->info("Permission not deleted");  
-       }
+        if ($delete) {
+            $this->info("Permission deleted");
+        } else {
+            $this->info("Permission not deleted");
+        }
     }
 }

@@ -121,7 +121,6 @@ class RoleController extends Controller
         $this->repository->update($data, $role->id);
 
         return redirect()->back()->with('success', 'Registo Atualizado!');
-
     }
 
     /**
