@@ -143,12 +143,20 @@ class UserController extends Controller
  
         if (!(Hash::check($request->get('old_password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error", "Sua senha atual não corresponde à senha que você forneceu. Por favor, tente novamente.");
+            return redirect()->back()->with(
+                "error",
+                "Sua senha atual não corresponde à senha que você forneceu.".
+                "Por favor, tente novamente."
+            );
         }
  
         if (strcmp($request->get('old_password'), $request->get('password')) == 0) {
             //Current password and new password are same
-            return redirect()->back()->with("error", "A nova senha não pode ser igual à sua senha atual. Por favor, escolha uma senha diferente.");
+            return redirect()->back()->with(
+                "error",
+                "A nova senha não pode ser igual à sua senha atual.".
+                " Por favor, escolha uma senha diferente."
+            );
         }
  
         $validatedData = $request->validate([
