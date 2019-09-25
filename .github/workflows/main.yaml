@@ -10,4 +10,4 @@ jobs:
       - uses: ./.github/actions/composer
       - uses: ./.github/actions/config-laravel
       - run: ./vendor/bin/phpunit
-      - run: ./vendor/bin/phpcs * --standard=PSR2
+      - run: ./vendor/bin/phpcs app/* --standard=PSR2
