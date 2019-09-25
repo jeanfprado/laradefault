@@ -63,6 +63,4 @@ class PermissionController extends Controller
 
         return redirect()->back()->with('success', 'Registro Atualizado!');
     }
-
-   
 }

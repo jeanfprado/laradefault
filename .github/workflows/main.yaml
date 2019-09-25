@@ -1,0 +1,13 @@
+name: Laravel Workflow
+on: push
+
+jobs:
+  build:
+    name: Laravel Build
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1 
+      - uses: ./.github/actions/composer
+      - uses: ./.github/actions/config-laravel
+      - run: ./vendor/bin/phpunit
+      - run: ./vendor/bin/phpcs app/* --standard=PSR2

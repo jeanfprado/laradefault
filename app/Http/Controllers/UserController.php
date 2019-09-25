@@ -115,7 +115,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UserRequest $request, User $user)
-   {
+    {
         $this->authorize('module_user.edit');
         $data = $request->all();
 
@@ -127,28 +127,36 @@ class UserController extends Controller
         $store->role()->sync($data['role_id']); //atualizando papel ao usuário
 
         return redirect()->back()->with('success', 'Registro atualizado!');
-    
     }
 
     public function profileUpdate(Request $request)
-     {
+    {
          $data = $request->all();
 
          User::where('id', Auth::id())->update(['name' => $data['name'], 'email' => $data['email']]);
 
          return redirect()->back()->with('success', 'Perfil atualizado!');
-     }
+    }
 
-    public function newPassword(Request $request){
+    public function newPassword(Request $request)
+    {
  
         if (!(Hash::check($request->get('old_password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Sua senha atual não corresponde à senha que você forneceu. Por favor, tente novamente.");
+            return redirect()->back()->with(
+                "error",
+                "Sua senha atual não corresponde à senha que você forneceu.".
+                "Por favor, tente novamente."
+            );
         }
  
-        if(strcmp($request->get('old_password'), $request->get('password')) == 0){
+        if (strcmp($request->get('old_password'), $request->get('password')) == 0) {
             //Current password and new password are same
-            return redirect()->back()->with("error","A nova senha não pode ser igual à sua senha atual. Por favor, escolha uma senha diferente.");
+            return redirect()->back()->with(
+                "error",
+                "A nova senha não pode ser igual à sua senha atual.".
+                " Por favor, escolha uma senha diferente."
+            );
         }
  
         $validatedData = $request->validate([
@@ -162,8 +170,8 @@ class UserController extends Controller
         $user->password = bcrypt($request->get('password'));
         $user->save();
  
-        return redirect()->back()->with("success","Senha alterada com sucesso !");
-     }
+        return redirect()->back()->with("success", "Senha alterada com sucesso !");
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -172,7 +180,7 @@ class UserController extends Controller
     * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
-   {
+    {
         $this->authorize('module_user.delete');
         //
     }

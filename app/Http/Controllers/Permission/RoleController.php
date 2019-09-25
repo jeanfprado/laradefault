@@ -85,11 +85,14 @@ class RoleController extends Controller
         $this->authorize('module_role.create');
         $data = $request->all();
 
-        $permissions = array_key_exists('permissions', $data) ? $data['permissions'] : []; //separa o array de permissões
+        //separa o array de permissões
+        $permissions = array_key_exists('permissions', $data)
+            ? $data['permissions'] : [];
 
         $role = Role::find($data['role_id']);
 
-        $role->permission()->sync($permissions); //sincronisa do cados de permissão padrão N:N do laravel
+        //sincronisa do cados de permissão padrão N:N do laravel
+        $role->permission()->sync($permissions);
 
         return redirect()->back()->with('success', 'Registro Salvo!');
     }
@@ -121,7 +124,6 @@ class RoleController extends Controller
         $this->repository->update($data, $role->id);
 
         return redirect()->back()->with('success', 'Registo Atualizado!');
-
     }
 
     /**

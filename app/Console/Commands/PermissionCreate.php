@@ -42,15 +42,14 @@ class PermissionCreate extends Command
     public function handle()
     {
        
-     $permission = $this->permission->create([
-         'name' => $this->argument('name'), 
+        $permission = $this->permission->create([
+         'name' => $this->argument('name'),
          'title' => $this->argument('title')]);
 
-         if($permission){
+        if ($permission) {
             $this->info("Permission `{$permission->name}` created");
-           }else{
-            $this->info("Permission not created");  
-           }   
-    
+        } else {
+            $this->info("Permission not created");
+        }
     }
 }

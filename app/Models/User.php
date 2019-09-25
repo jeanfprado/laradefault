@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-
 /**
  * Class User.
  *
@@ -46,24 +45,23 @@ class User extends Authenticatable implements Transformable
 
     public function role()
     {
-        return $this->belongsToMany(Role::class,'user_has_roles','user_id', 'role_id');
+        return $this->belongsToMany(Role::class, 'user_has_roles', 'user_id', 'role_id');
     }
 
     /**
-     * 
-     * Verificando se tem permissão 
+     *
+     * Verificando se tem permissão
      */
     public function hasPermission(\App\Models\Permission $permission)
     {
-       return $this->hasAnyRoles($permission->role);
+        return $this->hasAnyRoles($permission->role);
     }
     public function hasAnyRoles($roles)
-    { 
+    {
         // verifica se tem permissões para o papel especificado.
-        if ( is_array($roles) || is_object($roles) ){
-           return $roles->intersect($this->role)->count() > 0;
+        if (is_array($roles) || is_object($roles)) {
+            return $roles->intersect($this->role)->count() > 0;
         }
         return $this->roles->contains('name', $roles);
     }
-
 }
