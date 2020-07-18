@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title' => 'Laradefault',
+    'title' => 'MyHome',
 
-    'title_prefix' => '',
+    'title_prefix' => 'MyHome - ',
 
     'title_postfix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Lara</b>default',
+    'logo' => 'MyHome',
 
     'logo_mini' => '<b>L</b>dt',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => 'purple',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,38 +108,74 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'PRINCIPAL',
         [
-            'text' => 'Pages',
-            'url'  => 'admin/page',
-            'icon'  => 'file',
+            'text' => 'Dashboard',
+            'url'  => 'home',
+            'icon'  => 'dashboard',
         ],
-        
-        'ACCOUNT SETTINGS',
+        [
+            'text' => 'Cadastros',
+            'url'  => '#',
+            'icon'  => 'plus-circle',
+            'submenu' => [
+                [
+                    'text'        => 'Inquilinos',
+                    'url'         => 'tenants',
+                    'can'         => 'module_user',
+                ],
+                [
+                    'text' => 'Imóveis',
+                    'url'  => 'properties',
+                    'can'  => 'module_permission'
+                ],
+            ]
+
+        ],  
+        [
+            'text' => 'Finaceiro',
+            'url'  => '#',
+            'icon'  => 'money',
+            'submenu' => [
+                [
+                    'text'        => 'Movimentação',
+                    'url'         => 'users',
+                    'can'         => 'module_user',
+                ],
+            ]
+
+        ],         
+        'CONFIGURAÇÕES',
         [
             'text'        => 'Meu Perfil',
-            'route'         => 'users.profile',
+            'route'       => 'users.profile',
             'icon'        => 'user',
             'can'         => 'module_user.show',
         ],
         [
-            'text'        => 'Usuários',
-            'url'         => 'users',
-            'icon'        => 'users',
-            'can'         => 'module_user',
-        ],
-        [
-            'text' => 'Papeis de Acesso',
-            'url'  => 'roles',
+            'text' => 'Usuarios',
+            'url'  => '#',
             'icon' => 'user-secret',
             'can'  => 'module_role',
+            'submenu' => [
+                [
+                'text' => 'Papeis de Acesso',
+                'url'  => 'roles',
+                'can'  => 'module_role',
+                ],
+                [
+                    'text'        => 'Usuários',
+                    'url'         => 'users',
+                    'can'         => 'module_user',
+                ],
+                [
+                    'text' => 'Permissões',
+                    'url'  => 'permissions',
+                    'can'  => 'module_permission'
+                ],
+            ]
         ],
-        [
-            'text' => 'Permissões',
-            'url'  => 'permissions',
-            'icon' => 'lock',
-            'can'  => 'module_permission'
-        ],
+        
         [
             'text'    => 'Multilevel',
             'icon'    => 'share',
@@ -177,19 +213,6 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
         ],
     ],
 
